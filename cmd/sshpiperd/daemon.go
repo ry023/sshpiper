@@ -70,6 +70,11 @@ func newDaemon(ctx *cli.Context) (*daemon, error) {
 		}
 	}
 
+	algorithms := ctx.StringSlice("server-key-algorithms")
+	if len(algorithms) > 0 {
+		config.Config.KeyExchanges = algorithms
+	}
+
 	lis, err := net.Listen("tcp", net.JoinHostPort(ctx.String("address"), ctx.String("port")))
 	if err != nil {
 		return nil, fmt.Errorf("failed to listen for connection: %v", err)
