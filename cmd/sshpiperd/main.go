@@ -102,6 +102,11 @@ func main() {
 				Usage:   "server key in base64 format, server-key will be ignored if set",
 				EnvVars: []string{"SSHPIPERD_SERVER_KEY_DATA"},
 			},
+			&cli.StringSliceFlag{
+				Name:    "server-key-algorithms",
+				Usage:   "supported public key algorithm list for server key signing. If not set, it is automatically determined from the server key format",
+				EnvVars: []string{"SSHPIPERD_SERVER_KEY_ALGORITHMS"},
+			},
 			&cli.DurationFlag{
 				Name:    "login-grace-time",
 				Value:   30 * time.Second,
